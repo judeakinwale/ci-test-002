@@ -35,11 +35,21 @@ jobs:
       with:
         name: ci-artifact
         path: .
-        
-    - name: Create and Publish Docker Image
-      uses: manusa/actions-publish-docker@v1.1.2
+    
+    - name: Build container
+      uses: docker/build-push-action@v1
       with:
-        name: judeakinwale/testing
-        tag: ci-test
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
+        username: judeakinwale
+        password: ${{ secrets.GITHUB_TOKEN }}
+        registry: docker.pkg.github.com
+        repository: judeakinwale/publish-packages/ci-test
+        tag_with_sha: true
+        
+    # - name: Create and Publish Docker Image
+    #   uses: manusa/actions-publish-docker@v1.1.2
+    #   with:
+    #     name: judeakinwale/testing
+    #     tag: ci-test
+    #     username: ${{ secrets.DOCKER_USERNAME }}
+    #     password: ${{ secrets.DOCKER_PASSWORD }}
+
