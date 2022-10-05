@@ -37,13 +37,15 @@ jobs:
         path: .
     
     - name: Build container
-      uses: docker/build-push-action@v1
+#       uses: docker/build-push-action@v1
+      uses: docker/build-push-action@v2
       with:
         username: judeakinwale
         password: ${{ secrets.GITHUB_TOKEN }}
         registry: docker.pkg.github.com
-        repository: judeakinwale/publish-packages/ci-test
-        tag_with_sha: true
+#         repository: judeakinwale/publish-packages/ci-test
+        tags: judeakinwale/publish-packages/ci-test
+#         tag_with_sha: true
         
     # - name: Create and Publish Docker Image
     #   uses: manusa/actions-publish-docker@v1.1.2
